@@ -10,17 +10,17 @@ namespace CoachPage.Controllers
 {
     public class HomeController : Controller
     {
+        
+
         //
         // GET: /Home/
         public ActionResult Index()
         {
-
             var db = new DataBaseContext();
 
-            var trainer = new Trainer { Name = "Karola", Surrname = "Brysz", Description = "Coś tam o mnie", PhotoFileName = "fot" };
-
-            db.Trainers.Add(trainer);
-            db.SaveChanges();
+            var trainer = db.Trainers.ToList();
+            var posts = db.Posts.Take(3).ToList();
+            var proteges = db.Proteges.ToList();
 
             return View();
         }
